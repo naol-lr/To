@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To My Love 🩷</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+/* ═══════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --p1:#fff0f5;--p2:#ffd6e7;--p3:#ffb3cc;--p4:#ff8fab;--p5:#ff6b9d;
+  --g1:#fffdf0;--g3:#f0d080;--g4:#d4a843;
+  --dark:#060108;--dark2:#0f0210;
+  --glass:rgba(255,255,255,0.18);--glass-b:rgba(255,255,255,0.35);
+  --shadow:rgba(255,140,180,0.22);
+  --text:#5a1a35;--text2:#8b3a5a;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--p1);
+  color:var(--text);
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--p1);}
+::-webkit-scrollbar-thumb{background:var(--p3);border-radius:3px;}
+
+/* ═══════════════════════════════════════════
+   HIDDEN YOUTUBE PLAYERS
+═══════════════════════════════════════════ */
+#yt-wrap{
+  position:fixed;left:-9999px;top:-9999px;
+  width:1px;height:1px;opacity:0;pointer-events:none;z-index:-1000;
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL HEARTBEAT WIDGET
+═══════════════════════════════════════════ */
+#hb-widget{
+  position:fixed;
+  bottom:1.4rem;right:1.4rem;
+  z-index:500;
+  display:flex;align-items:center;justify-content:center;
+  width:52px;height:52px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+#hb-widget.visible{opacity:1;}
+#hb-core{
+  font-size:1.8rem;
+  position:relative;z-index:2;
+  animation:hbCalm 1.8s ease-in-out infinite;
+  filter:drop-shadow(0 0 8px rgba(255,105,180,0.6));
+}
+#hb-ring{
+  position:absolute;inset:0;
+  border-radius:50%;
+  background:rgba(255,100,170,0.15);
+  animation:hbRing 1.8s ease-out infinite;
+}
+#hb-ring2{
+  position:absolute;inset:-8px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,100,170,0.2);
+  animation:hbRing2 1.8s ease-out infinite 0.4s;
+}
+@keyframes hbCalm{0%,100%{transform:scale(1);}40%{transform:scale(1.25);}55%{transform:scale(1.1);}70%{transform:scale(1.2);}85%{transform:scale(1);}}
+@keyframes hbRing{0%{transform:scale(1);opacity:0.6;}100%{transform:scale(2.4);opacity:0;}}
+@keyframes hbRing2{0%{transform:scale(1);opacity:0.4;}100%{transform:scale(2.8);opacity:0;}}
+
+/* Heartbeat phases */
+.hb-slow #hb-core{animation-duration:2s;}
+.hb-slow #hb-ring{animation-duration:2s;}
+.hb-slow #hb-ring2{animation-duration:2s;}
+.hb-medium #hb-core{animation-duration:1.1s;}
+.hb-medium #hb-ring{animation-duration:1.1s;}
+.hb-medium #hb-ring2{animation-duration:1.1s;}
+.hb-fast #hb-core{animation-duration:0.7s;filter:drop-shadow(0 0 18px rgba(255,80,160,0.9));}
+.hb-fast #hb-ring{animation-duration:0.7s;}
+.hb-fast #hb-ring2{animation-duration:0.7s;}
+.hb-glitch #hb-core{animation:hbGlitch 0.9s ease-in-out infinite;}
+@keyframes hbGlitch{
+  0%{transform:scale(1);}10%{transform:scale(1.3);}20%{transform:scale(0.95);}
+  30%{transform:scale(1.2);}40%{transform:scale(1);}55%{transform:scale(1);}
+  60%{transform:scale(1.25);}65%{transform:scale(1.25);}80%{transform:scale(1);}100%{transform:scale(1);}
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL FLOATING HEARTS
+═══════════════════════════════════════════ */
+#hearts-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+}
+.fh{
+  position:absolute;bottom:-50px;
+  animation:fhRise linear infinite;
+  opacity:0;user-select:none;
+}
+@keyframes fhRise{
+  0%{transform:translateY(0) rotate(-8deg) scale(0.85);opacity:0;}
+  8%{opacity:0.65;}
+  88%{opacity:0.4;}
+  100%{transform:translateY(-110vh) rotate(12deg) scale(1.1);opacity:0;}
+}
+
+/* ═══════════════════════════════════════════
+   LANDING — WAX ENVELOPE
+═══════════════════════════════════════════ */
+#landing{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(160deg,#fff0f5 0%,#fde8f0 30%,#fddbe8 55%,#fce8d5 100%);
+}
+#landing::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 25%,rgba(255,182,193,0.5) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 75%,rgba(255,218,185,0.35) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 10%,rgba(255,255,255,0.6) 0%,transparent 40%);
+  pointer-events:none;
+}
+/* Parchment grain */
+#landing::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+
+/* Light rays */
+.light-ray{
+  position:absolute;
+  top:-10%;
+  width:2px;
+  height:120%;
+  background:linear-gradient(180deg,rgba(255,230,200,0.0) 0%,rgba(255,220,190,0.25) 40%,rgba(255,230,200,0.0) 100%);
+  transform-origin:top center;
+  pointer-events:none;
+}
+
+/* Dust particles */
+.dust{
+  position:absolute;width:3px;height:3px;
+  border-radius:50%;
+  background:rgba(255,200,180,0.7);
+  animation:dustFloat linear infinite;
+  pointer-events:none;
+}
+@keyframes dustFloat{
+  0%{transform:translateY(0) translateX(0);opacity:0;}
+  10%{opacity:0.8;}
+  90%{opacity:0.4;}
+  100%{transform:translateY(-80vh) translateX(30px);opacity:0;}
+}
+
+/* ── Envelope ── */
+#envelope-wrap{
+  position:relative;z-index:2;
+  animation:envFloat 3.5s ease-in-out infinite;
+  cursor:pointer;
+}
+@keyframes envFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-14px);}
+}
+#envelope-wrap.cracking{animation:none;}
+#envelope-wrap.opened{animation:none;}
+
+#envelope{
+  position:relative;
+  width:min(360px,86vw);
+  height:min(250px,60vw);
+}
+
+/* Back of envelope */
+.env-back{
+  position:absolute;inset:0;
+  background:linear-gradient(145deg,#fde8f0 0%,#fbdce8 60%,#f8d0de 100%);
+  border-radius:8px 8px 10px 10px;
+  box-shadow:0 20px 60px rgba(200,80,120,0.18),0 8px 24px rgba(200,80,120,0.12),inset 0 1px 0 rgba(255,255,255,0.5);
+  overflow:hidden;
+}
+.env-back::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Address lines on envelope */
+.env-address{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:2;
+}
+.env-to{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(0.85rem,3.5vw,1.1rem);
+  color:rgba(120,40,70,0.55);
+  letter-spacing:0.08em;
+  margin-bottom:0.3rem;
+}
+.env-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,5vw,1.7rem);
+  font-style:italic;
+  color:rgba(120,40,70,0.8);
+  letter-spacing:0.05em;
+}
+
+/* Envelope flap (top triangle) */
+.env-flap{
+  position:absolute;top:0;left:0;right:0;
+  height:0;
+  border-left:calc(min(360px,86vw)/2) solid transparent;
+  border-right:calc(min(360px,86vw)/2) solid transparent;
+  border-top:calc(min(250px,60vw)*0.44) solid #f5cedd;
+  z-index:5;
+  transform-origin:top center;
+  transform-style:preserve-3d;
+  filter:drop-shadow(0 3px 6px rgba(180,60,100,0.15));
+  transition:transform 1.4s cubic-bezier(0.4,0,0.2,1);
+}
+.env-flap::after{
+  content:'';
+  position:absolute;
+  top:calc(-1 * min(250px,60vw)*0.44);
+  left:calc(-1 * min(360px,86vw)/2);
+  width:min(360px,86vw);
+  height:calc(min(250px,60vw)*0.44);
+  background:linear-gradient(180deg,rgba(255,255,255,0.2) 0%,rgba(240,160,180,0.1) 100%);
+  clip-path:polygon(50% 100%,0% 0%,100% 0%);
+  pointer-events:none;
+}
+.env-flap.open{transform:rotateX(-180deg);}
+
+/* Bottom triangles (decorative crease lines) */
+.env-bottom{
+  position:absolute;bottom:0;left:0;right:0;
+  height:0;
+  border-left:calc(min(360px,86vw)/2) solid transparent;
+  border-right:calc(min(360px,86vw)/2) solid transparent;
+  border-bottom:calc(min(250px,60vw)*0.38) solid rgba(240,170,195,0.4);
+  z-index:1;
+}
+.env-left{
+  position:absolute;top:0;left:0;bottom:0;
+  width:0;
+  border-top:calc(min(250px,60vw)/2) solid transparent;
+  border-bottom:calc(min(250px,60vw)/2) solid transparent;
+  border-left:calc(min(360px,86vw)*0.3) solid rgba(245,180,200,0.25);
+  z-index:1;
+}
+.env-right{
+  position:absolute;top:0;right:0;bottom:0;
+  width:0;
+  border-top:calc(min(250px,60vw)/2) solid transparent;
+  border-bottom:calc(min(250px,60vw)/2) solid transparent;
+  border-right:calc(min(360px,86vw)*0.3) solid rgba(245,180,200,0.25);
+  z-index:1;
+}
+
+/* ── Wax Seal ── */
+#wax-seal{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:10;
+  cursor:pointer;
+  width:72px;height:72px;
+}
+.seal-circle{
+  width:72px;height:72px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ff8fab,#e0456a 55%,#b8264a 100%);
+  box-shadow:
+    0 4px 14px rgba(180,30,70,0.45),
+    0 0 0 2px rgba(255,150,170,0.4),
+    inset 0 2px 4px rgba(255,200,210,0.5),
+    inset 0 -2px 6px rgba(100,10,30,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+  position:relative;
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+}
+/* Wax shine highlight */
+.seal-circle::before{
+  content:'';
+  position:absolute;
+  top:12%;left:18%;
+  width:30%;height:22%;
+  background:rgba(255,240,245,0.55);
+  border-radius:50%;
+  transform:rotate(-25deg);
+  filter:blur(3px);
+}
+/* Wax drip texture */
+.seal-circle::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;left:50%;
+  transform:translateX(-50%);
+  width:20px;height:12px;
+  background:radial-gradient(ellipse,#c0304e,#a01030);
+  border-radius:0 0 50% 50%;
+  filter:blur(1px);
+}
+#wax-seal:hover .seal-circle{
+  transform:scale(1.07);
+  box-shadow:0 6px 24px rgba(180,30,70,0.55),0 0 0 3px rgba(255,150,170,0.5),inset 0 2px 4px rgba(255,200,210,0.5),inset 0 -2px 6px rgba(100,10,30,0.3),0 0 40px rgba(255,100,150,0.3);
+}
+.seal-pulse{
+  position:absolute;inset:-6px;
+  border-radius:50%;
+  border:2px solid rgba(255,130,170,0.3);
+  animation:sealPulse 2.2s ease-out infinite;
+}
+.seal-pulse2{
+  position:absolute;inset:-14px;
+  border-radius:50%;
+  border:1.5px solid rgba(255,130,170,0.15);
+  animation:sealPulse 2.2s ease-out infinite 0.8s;
+}
+@keyframes sealPulse{0%{transform:scale(1);opacity:0.7;}100%{transform:scale(1.5);opacity:0;}}
+
+/* Crack particles */
+.crack-particle{
+  position:absolute;
+  top:50%;left:50%;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:rgba(230,100,140,0.9);
+  pointer-events:none;
+  animation:crackFly var(--dur,0.8s) cubic-bezier(0.2,0.8,0.4,1) forwards;
+}
+@keyframes crackFly{
+  0%{transform:translate(-50%,-50%) translate(0,0) scale(1);opacity:1;}
+  100%{transform:translate(-50%,-50%) translate(var(--tx,40px),var(--ty,-40px)) scale(0.2);opacity:0;}
+}
+
+/* ── Letter (inside envelope) ── */
+#letter{
+  position:absolute;
+  top:8%;left:50%;
+  transform:translateX(-50%) scaleY(0);
+  transform-origin:bottom center;
+  width:90%;
+  background:linear-gradient(165deg,#fffcf9 0%,#fff5f7 50%,#fff9f5 100%);
+  border-radius:6px;
+  padding:clamp(1.2rem,4vw,2rem) clamp(1rem,3vw,1.8rem);
+  box-shadow:0 -8px 32px rgba(200,80,120,0.15),0 4px 20px rgba(200,80,120,0.1);
+  z-index:4;
+  text-align:center;
+  transition:transform 1.2s cubic-bezier(0.34,1.26,0.64,1),opacity 0.5s ease;
+  opacity:0;
+  pointer-events:none;
+}
+#letter.revealed{
+  transform:translateX(-50%) scaleY(1) translateY(-30%);
+  opacity:1;
+  pointer-events:all;
+}
+.letter-content{
+  opacity:0;
+  transition:opacity 0.8s ease 0.6s;
+}
+#letter.revealed .letter-content{opacity:1;}
+.letter-eyebrow{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(0.75rem,2.5vw,0.95rem);
+  color:var(--g4);
+  letter-spacing:0.1em;
+  margin-bottom:0.5rem;
+}
+.letter-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,4vw,1.5rem);
+  font-weight:300;
+  font-style:italic;
+  color:var(--text);
+  line-height:1.4;
+  margin-bottom:1rem;
+}
+.letter-sub{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(0.75rem,2.5vw,0.9rem);
+  color:var(--g4);
+  margin-bottom:1.2rem;
+}
+
+/* ── Start Button ── */
+#start-btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.75rem 1.8rem;
+  background:linear-gradient(135deg,rgba(255,255,255,0.7),rgba(255,200,220,0.5));
+  border:1.5px solid rgba(255,180,200,0.5);
+  border-radius:50px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(0.95rem,3vw,1.15rem);
+  font-weight:600;
+  color:var(--text);
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+  box-shadow:0 6px 24px rgba(255,120,160,0.2);
+  transition:all 0.3s ease;
+  letter-spacing:0.04em;
+}
+#start-btn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 36px rgba(255,120,160,0.3);}
+
+/* Click hint */
+.seal-hint{
+  position:absolute;
+  bottom:-3.2rem;
+  left:50%;transform:translateX(-50%);
+  white-space:nowrap;
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(0.75rem,2.5vw,0.9rem);
+  color:rgba(150,60,90,0.5);
+  letter-spacing:0.05em;
+  animation:hintBounce 2s ease-in-out infinite;
+}
+@keyframes hintBounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-5px);}}
+
+/* Landing title outside envelope */
+.landing-header{
+  position:relative;z-index:2;
+  text-align:center;
+  margin-bottom:3rem;
+  opacity:0;
+  animation:fadeUp 1.2s ease 0.4s forwards;
+}
+.landing-eyebrow{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(0.9rem,3vw,1.1rem);
+  color:var(--g4);
+  letter-spacing:0.1em;
+  margin-bottom:0.6rem;
+}
+.landing-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,6vw,3.5rem);
+  font-weight:300;
+  color:var(--text);
+  line-height:1.2;
+}
+.landing-title em{font-style:italic;color:var(--p5);}
+
+.landing-sub{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1rem,3vw,1.3rem);
+  color:var(--g4);
+  position:relative;z-index:2;
+  text-align:center;
+  margin-bottom:3rem;
+  opacity:0;
+  animation:fadeUp 1.2s ease 0.7s forwards;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ═══════════════════════════════════════════
+   SECTION SHARED
+═══════════════════════════════════════════ */
+.section{
+  position:relative;
+  padding:clamp(4rem,10vw,8rem) 1.5rem;
+  z-index:1;
+}
+.section-inner{max-width:900px;margin:0 auto;}
+
+.section-label{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(0.85rem,2.5vw,1rem);
+  color:var(--g4);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:0.6rem;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.7rem,5vw,2.8rem);
+  font-weight:300;
+  color:var(--text);
+  line-height:1.25;
+  margin-bottom:2rem;
+}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.15s}.rd2{transition-delay:.3s}.rd3{transition-delay:.45s}
+
+/* Petal divider */
+.divider{text-align:center;padding:.8rem 0;font-size:1.1rem;color:rgba(255,140,180,0.35);letter-spacing:1.5rem;}
+
+/* ═══════════════════════════════════════════
+   LOVE MESSAGE
+═══════════════════════════════════════════ */
+#love-message{background:linear-gradient(180deg,#fff0f5 0%,#ffeaf3 55%,#fff5f0 100%);}
+
+.message-glass{
+  background:var(--glass);
+  border:1.5px solid var(--glass-b);
+  border-radius:24px;
+  padding:clamp(2rem,6vw,3.5rem);
+  backdrop-filter:blur(22px);
+  box-shadow:0 20px 60px var(--shadow),inset 0 1px 0 rgba(255,255,255,0.65);
+  position:relative;overflow:hidden;
+}
+.message-glass::before{
+  content:'\201C';
+  position:absolute;top:-1rem;left:1rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:9rem;color:rgba(255,140,175,0.1);
+  line-height:1;pointer-events:none;
+}
+.typing-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.05rem,3vw,1.5rem);
+  font-style:italic;
+  line-height:1.9;
+  color:var(--text);
+  min-height:5em;
+}
+.cursor{
+  display:inline-block;width:2px;height:1.05em;
+  background:var(--p5);margin-left:2px;
+  vertical-align:text-bottom;
+  animation:blink .75s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* ═══════════════════════════════════════════
+   SONGS
+═══════════════════════════════════════════ */
+#songs{background:linear-gradient(180deg,#fff5f0 0%,#ffe8f0 65%,#fff0f5 100%);}
+.songs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem;margin-top:.5rem;}
+
+.song-card{
+  background:linear-gradient(140deg,rgba(255,255,255,0.55),rgba(255,210,230,0.3));
+  border:1.5px solid var(--glass-b);
+  border-radius:20px;
+  padding:1.8rem 1.6rem;
+  backdrop-filter:blur(16px);
+  box-shadow:0 8px 28px rgba(255,120,160,0.1);
+  cursor:pointer;
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+  position:relative;overflow:hidden;
+}
+.song-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,170,200,0.22),transparent 70%);
+  opacity:0;transition:opacity .35s ease;pointer-events:none;
+}
+.song-card:hover{
+  transform:translateY(-7px) scale(1.026);
+  box-shadow:0 22px 60px rgba(255,120,160,0.26),0 0 40px rgba(255,170,200,0.18);
+  border-color:rgba(255,140,180,0.5);
+}
+.song-card:hover::after{opacity:1;}
+.song-note{font-size:2rem;margin-bottom:.9rem;animation:pulse 3s ease-in-out infinite;}
+.song-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:.25rem;}
+.song-artist{font-family:'Dancing Script',cursive;font-size:.95rem;color:var(--g4);}
+.song-bar{margin-top:1.1rem;height:3px;background:rgba(255,170,200,0.18);border-radius:2px;overflow:hidden;}
+.song-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--p3),var(--g3));width:0%;transition:width 2.5s ease;}
+.song-card:hover .song-bar-fill{width:100%;}
+
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.22);}}
+
+/* ═══════════════════════════════════════════
+   MEMORIES
+═══════════════════════════════════════════ */
+#memories{background:linear-gradient(180deg,#fff0f5 0%,#ffeef8 55%,#fff5ee 100%);}
+.memories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.1rem;margin-top:.5rem;}
+.memory-card{
+  background:linear-gradient(140deg,rgba(255,255,255,0.5),rgba(255,210,230,0.22));
+  border:1.5px solid var(--glass-b);
+  border-radius:18px;
+  aspect-ratio:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.7rem;
+  backdrop-filter:blur(14px);
+  box-shadow:0 6px 22px rgba(255,120,160,0.09);
+  transition:transform .35s ease,box-shadow .35s ease;
+  text-align:center;padding:1.4rem;
+}
+.memory-card:hover{transform:translateY(-5px) rotate(1deg);box-shadow:0 14px 40px rgba(255,120,160,0.2);}
+.memory-icon{font-size:2rem;}
+.memory-label{font-family:'Dancing Script',cursive;font-size:.95rem;color:var(--text2);}
+.memory-soon{font-family:'Inter',sans-serif;font-size:.68rem;color:rgba(140,60,90,0.45);letter-spacing:.06em;}
+
+/* ═══════════════════════════════════════════
+   PROMISE
+═══════════════════════════════════════════ */
+#promise{background:linear-gradient(180deg,#fff5ee 0%,#ffeaf3 65%,#fff0f5 100%);text-align:center;}
+.promise-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,5vw,2.7rem);
+  font-weight:600;color:var(--text);line-height:1.4;
+  margin-bottom:2rem;
+}
+.hb-center{display:flex;justify-content:center;margin-bottom:1.5rem;}
+.hb-big{
+  font-size:3.2rem;
+  animation:heartbeat 1.4s ease-in-out infinite;
+  filter:drop-shadow(0 0 14px rgba(255,100,160,0.5));
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}15%{transform:scale(1.28);}30%{transform:scale(1);}45%{transform:scale(1.18);}60%{transform:scale(1);}
+}
+.hb-svg{width:min(340px,88vw);height:64px;display:block;margin:0 auto 2rem;}
+.hb-path{
+  fill:none;stroke:var(--p4);stroke-width:2.5;
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:800;stroke-dashoffset:800;
+  animation:drawLine 2.5s ease forwards,pulseLine 3s ease 2.5s infinite;
+}
+@keyframes drawLine{to{stroke-dashoffset:0;}}
+@keyframes pulseLine{0%,100%{opacity:1;stroke:var(--p4);}50%{opacity:.5;stroke:var(--g3);}}
+
+/* ═══════════════════════════════════════════
+   SURPRISE BUTTON
+═══════════════════════════════════════════ */
+#surprise-section{
+  background:linear-gradient(180deg,#fff0f5 0%,#ffe4f0 100%);
+  text-align:center;
+  padding:clamp(3rem,8vw,6rem) 1.5rem;
+}
+.surprise-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:1rem 2.8rem;
+  background:linear-gradient(135deg,#ff8fab,#ff6b9d,#d4a843);
+  border:none;border-radius:60px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:600;
+  color:#fff;cursor:pointer;
+  box-shadow:0 10px 40px rgba(255,100,150,0.38),0 0 60px rgba(255,100,150,0.08);
+  transition:all .35s ease;letter-spacing:.04em;
+  position:relative;overflow:hidden;
+}
+.surprise-btn::before{
+  content:'';position:absolute;top:50%;left:50%;
+  width:0;height:0;background:rgba(255,255,255,0.2);border-radius:50%;
+  transform:translate(-50%,-50%);transition:width .6s ease,height .6s ease;
+}
+.surprise-btn:hover::before{width:320px;height:320px;}
+.surprise-btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 18px 55px rgba(255,100,150,0.48);}
+
+/* ═══════════════════════════════════════════
+   CINEMATIC OVERLAY
+═══════════════════════════════════════════ */
+#cin-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:#000;
+  opacity:0;pointer-events:none;
+  transition:opacity .9s ease;
+  display:flex;align-items:center;justify-content:center;
+}
+#cin-overlay.active{opacity:1;pointer-events:all;}
+
+.cphase{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:2rem;
+  opacity:0;transition:opacity .7s ease;
+  pointer-events:none;
+}
+.cphase.active{opacity:1;pointer-events:all;}
+
+/* ── Phase 1 ── */
+#cp1{background:#06010c;text-align:center;}
+.cp1-heart{
+  font-size:3.8rem;margin-bottom:1.8rem;
+  filter:drop-shadow(0 0 18px #ff69b4) drop-shadow(0 0 36px rgba(255,105,180,.5));
+  animation:glowPulse 2s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{filter:drop-shadow(0 0 14px #ff69b4) drop-shadow(0 0 28px rgba(255,105,180,.4));}
+  50%{filter:drop-shadow(0 0 28px #ff69b4) drop-shadow(0 0 55px rgba(255,105,180,.75));}
+}
+.cp1-msg{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.95rem,3vw,1.35rem);
+  color:rgba(255,205,225,.9);
+  min-height:2em;margin-bottom:2.2rem;
+  font-style:italic;letter-spacing:.03em;
+  transition:opacity .45s ease;
+}
+.lbar-wrap{width:min(380px,85vw);height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin-bottom:.7rem;}
+.lbar{height:100%;width:0%;background:linear-gradient(90deg,#ff8fab,#ff69b4,#d4a843);border-radius:4px;transition:width .25s linear;box-shadow:0 0 10px rgba(255,105,180,.55);}
+.lbar-pct{font-family:'Inter',sans-serif;font-size:.75rem;color:rgba(255,170,200,.45);letter-spacing:.1em;}
+
+/* ── Phase 2 ── */
+#cp2{background:#06010c;text-align:center;}
+.err-title{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(1.3rem,5vw,2.1rem);
+  font-weight:300;
+  color:rgba(255,75,115,.9);
+  margin-bottom:.5rem;letter-spacing:.05em;
+}
+.err-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.85rem,2.5vw,1.05rem);
+  color:rgba(255,140,160,.55);
+  margin-bottom:2.2rem;font-style:italic;
+}
+.err-msg{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(.72rem,2vw,.88rem);
+  color:rgba(255,140,160,.45);
+  min-height:1.5em;letter-spacing:.08em;
+  margin-bottom:1.8rem;
+  transition:opacity .25s ease;
+}
+/* Glitch */
+.glitch{position:relative;}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;}
+.glitch::before{color:rgba(255,0,90,.65);animation:gTop .35s linear infinite;clip-path:polygon(0 0,100% 0,100% 38%,0 38%);}
+.glitch::after{color:rgba(0,200,255,.25);animation:gBot .45s linear infinite;clip-path:polygon(0 62%,100% 62%,100% 100%,0 100%);}
+@keyframes gTop{0%{transform:translate(-2px,-1px);}25%{transform:translate(2px,1px);}50%{transform:translate(-1px,2px);}75%{transform:translate(1px,-2px);}100%{transform:translate(0,0);}}
+@keyframes gBot{0%{transform:translate(2px,1px);}25%{transform:translate(-2px,-1px);}50%{transform:translate(1px,-2px);}75%{transform:translate(-1px,2px);}100%{transform:translate(0,0);}}
+
+/* ── Phase 3 ── */
+#cp3{
+  background:#06010c;text-align:center;
+  transition:background 2.5s ease,opacity .7s ease;
+}
+#cp3.pink-bg{background:radial-gradient(ellipse at center,#3d0818 0%,#18030d 45%,#06010c 100%);}
+.rescue-hearts{font-size:1.8rem;opacity:0;transition:opacity 1.5s ease;letter-spacing:.4rem;margin-bottom:1.5rem;}
+#cp3.lit .rescue-hearts{opacity:1;}
+.rescue-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,4vw,1.9rem);
+  font-style:italic;
+  color:rgba(255,200,220,.0);
+  line-height:2;
+  transition:color 1s ease;
+  min-height:4em;
+}
+#cp3.lit .rescue-text{color:rgba(255,215,230,.95);}
+
+/* ── Phase 4 ── */
+#cp4{
+  background:radial-gradient(ellipse at center,#2a0510 0%,#0e0209 100%);
+  text-align:center;
+  padding:3rem 2rem;
+  overflow-y:auto;
+}
+.final-msg{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,3vw,1.5rem);
+  font-style:italic;
+  color:rgba(255,220,235,.0);
+  line-height:2.1;
+  max-width:680px;
+  margin:0 auto 2rem;
+  opacity:0;
+  transform:scale(.96);
+  transition:opacity 2s ease,transform 5s ease,color 2s ease;
+}
+#cp4.revealed .final-msg{opacity:1;transform:scale(1.025);color:rgba(255,220,235,.95);}
+.final-tagline{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1rem,3.5vw,1.5rem);
+  color:var(--g3);
+  opacity:0;transition:opacity 1.8s ease 1.8s;
+  margin-bottom:1.8rem;
+}
+#cp4.revealed .final-tagline{opacity:1;}
+.final-hearts{font-size:1.5rem;opacity:0;letter-spacing:.5rem;transition:opacity 1.5s ease 2.8s;}
+#cp4.revealed .final-hearts{opacity:1;}
+.cin-close{
+  display:inline-block;margin-top:2rem;
+  padding:.75rem 2rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,170,200,.28);
+  border-radius:40px;
+  color:rgba(255,170,200,.55);
+  font-family:'Inter',sans-serif;font-size:.8rem;
+  letter-spacing:.1em;cursor:pointer;
+  opacity:0;transition:opacity 1.5s ease 3.8s,background .3s ease,color .3s ease;
+}
+#cp4.revealed .cin-close{opacity:1;}
+.cin-close:hover{background:rgba(255,255,255,.14);color:rgba(255,205,225,.9);}
+
+/* Flicker */
+@keyframes flicker{0%,100%{opacity:1;}6%{opacity:.8;}12%{opacity:1;}18%{opacity:.65;}24%{opacity:1;}52%{opacity:.9;}56%{opacity:1;}}
+.flickering{animation:flicker .35s linear;}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{background:linear-gradient(0deg,#ffe4f0,#fff0f5);text-align:center;padding:2.2rem 1.5rem;}
+footer p{font-family:'Dancing Script',cursive;font-size:1rem;color:rgba(100,30,60,.45);}
+  </style>
+</head>
+<body>
+
+<!-- ════════ HIDDEN YOUTUBE PLAYERS ════════ -->
+<div id="yt-wrap">
+  <div id="p1"></div>
+  <div id="p2"></div>
+  <div id="p3"></div>
+</div>
+
+<!-- ════════ GLOBAL HEARTBEAT WIDGET ════════ -->
+<div id="hb-widget" class="hb-slow">
+  <div id="hb-ring2"></div>
+  <div id="hb-ring"></div>
+  <div id="hb-core">🩷</div>
+</div>
+
+<!-- ════════ FLOATING HEARTS BG ════════ -->
+<div id="hearts-bg"></div>
+
+<!-- ════════════════════════════════════
+     LANDING — ENVELOPE
+════════════════════════════════════ -->
+<section id="landing">
+
+  <!-- Light rays -->
+  <div class="light-ray" style="left:20%;transform:rotate(-8deg);"></div>
+  <div class="light-ray" style="left:50%;transform:rotate(2deg);opacity:.7;"></div>
+  <div class="light-ray" style="left:78%;transform:rotate(10deg);opacity:.6;"></div>
+
+  <div class="landing-header">
+    <div class="landing-eyebrow">✦ A sealed letter just for you ✦</div>
+    <h1 class="landing-title">To My <em>Love</em>,<br>On This Special Day</h1>
+  </div>
+
+  <p class="landing-sub">🌸 Happy Ethiopian Easter &amp; Our Anniversary 🌸</p>
+
+  <!-- Envelope -->
+  <div id="envelope-wrap" onclick="crackSeal(event)">
+    <div id="envelope">
+      <div class="env-back">
+        <div class="env-left"></div>
+        <div class="env-right"></div>
+        <div class="env-bottom"></div>
+        <div class="env-address">
+          <div class="env-to">To my love,</div>
+          <div class="env-name">With all my heart</div>
+        </div>
+      </div>
+
+      <!-- Flap -->
+      <div class="env-flap" id="env-flap"></div>
+
+      <!-- Wax Seal -->
+      <div id="wax-seal">
+        <div class="seal-pulse2"></div>
+        <div class="seal-pulse"></div>
+        <div class="seal-circle">🩷</div>
+      </div>
+
+      <!-- Letter inside -->
+      <div id="letter">
+        <div class="letter-content">
+          <div class="letter-eyebrow">✦ Open with love ✦</div>
+          <div class="letter-title">"To My Love,<br>On This Special Day"</div>
+          <div class="letter-sub">Happy Ethiopian Easter &amp; Our Anniversary 🌸</div>
+          <button id="start-btn" onclick="startExperience(event)">Start Experience 💌</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="seal-hint" id="seal-hint">✦ Click the seal to open ✦</div>
+  </div>
+
+</section>
+
+<div class="divider">🌸 🌸 🌸</div>
+
+<!-- ════════════════════════════════════
+     LOVE MESSAGE
+════════════════════════════════════ -->
+<section id="love-message" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">A Promise</div>
+    <h2 class="section-title reveal rd1">From My Heart to Yours</h2>
+    <div class="message-glass reveal rd2">
+      <p class="typing-text" id="typing-text"><span class="cursor"></span></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">🌸 🌸 🌸</div>
+
+<!-- ════════════════════════════════════
+     SONGS
+════════════════════════════════════ -->
+<section id="songs" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">Our Soundtrack</div>
+    <h2 class="section-title reveal rd1">Songs That Remind Me of You</h2>
+    <div class="songs-grid">
+      <div class="song-card reveal rd1">
+        <div class="song-note">🎵</div>
+        <div class="song-title">Get You</div>
+        <div class="song-artist">Daniel Caesar</div>
+        <div class="song-bar"><div class="song-bar-fill"></div></div>
+      </div>
+      <div class="song-card reveal rd2">
+        <div class="song-note">🎶</div>
+        <div class="song-title">Best Part</div>
+        <div class="song-artist">Daniel Caesar</div>
+        <div class="song-bar"><div class="song-bar-fill"></div></div>
+      </div>
+      <div class="song-card reveal rd3">
+        <div class="song-note">💫</div>
+        <div class="song-title">Luther</div>
+        <div class="song-artist">Kendrick Lamar</div>
+        <div class="song-bar"><div class="song-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">🌸 🌸 🌸</div>
+
+<!-- ════════════════════════════════════
+     MEMORIES
+════════════════════════════════════ -->
+<section id="memories" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">Our Story</div>
+    <h2 class="section-title reveal rd1">Our Funny Moments</h2>
+    <div class="memories-grid">
+      <div class="memory-card reveal rd1"><div class="memory-icon">📸</div><div class="memory-label">Our Memories</div><div class="memory-soon">Coming Soon…</div></div>
+      <div class="memory-card reveal rd2"><div class="memory-icon">🌙</div><div class="memory-label">Late Night Talks</div><div class="memory-soon">Coming Soon…</div></div>
+      <div class="memory-card reveal rd3"><div class="memory-icon">🌸</div><div class="memory-label">Sweet Moments</div><div class="memory-soon">Coming Soon…</div></div>
+      <div class="memory-card reveal rd1"><div class="memory-icon">✨</div><div class="memory-label">Magic Between Us</div><div class="memory-soon">Coming Soon…</div></div>
+      <div class="memory-card reveal rd2"><div class="memory-icon">🎵</div><div class="memory-label">Songs &amp; Smiles</div><div class="memory-soon">Coming Soon…</div></div>
+      <div class="memory-card reveal rd3"><div class="memory-icon">💌</div><div class="memory-label">Every Little Thing</div><div class="memory-soon">Coming Soon…</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">🌸 🌸 🌸</div>
+
+<!-- ════════════════════════════════════
+     PROMISE
+════════════════════════════════════ -->
+<section id="promise" class="section">
+  <div class="section-inner">
+    <div class="section-label reveal">My Vow</div>
+    <div class="hb-center reveal rd1"><span class="hb-big">🩷</span></div>
+    <svg class="hb-svg reveal rd2" viewBox="0 0 340 64" xmlns="http://www.w3.org/2000/svg">
+      <path class="hb-path" d="M0,32 L38,32 L52,8 L66,58 L80,18 L94,48 L108,32 L128,32 L142,4 L158,62 L172,22 L186,44 L200,32 L220,32 L234,14 L250,52 L264,28 L278,40 L300,32 L340,32"/>
+    </svg>
+    <p class="promise-text reveal rd3">
+      "You will never walk alone.<br>Not today. Not ever."
+    </p>
+  </div>
+</section>
+
+<div class="divider">🌸 🌸 🌸</div>
+
+<!-- ════════════════════════════════════
+     SURPRISE BUTTON
+════════════════════════════════════ -->
+<section id="surprise-section">
+  <div class="section-label reveal" style="margin-bottom:1.1rem;">One More Thing…</div>
+  <button class="surprise-btn reveal rd1" onclick="startCinematic()">Click for a Surprise 💌</button>
+</section>
+
+<footer><p>Made with 🩷 just for you</p></footer>
+
+<!-- ════════════════════════════════════
+     CINEMATIC OVERLAY
+════════════════════════════════════ -->
+<div id="cin-overlay">
+
+  <!-- Phase 1: Loading -->
+  <div class="cphase" id="cp1">
+    <div class="cp1-heart">🩷</div>
+    <div class="cp1-msg" id="cp1-msg">Loading memories…</div>
+    <div class="lbar-wrap"><div class="lbar" id="lbar"></div></div>
+    <div class="lbar-pct" id="lbar-pct">0%</div>
+  </div>
+
+  <!-- Phase 2: Error -->
+  <div class="cphase" id="cp2">
+    <div class="err-title glitch" data-text="Error 404: Memory Not Found">Error 404: Memory Not Found</div>
+    <div class="err-sub">Something went wrong…</div>
+    <div class="lbar-wrap"><div class="lbar" id="ebar" style="background:linear-gradient(90deg,#ff4477,#ff6688);box-shadow:0 0 10px rgba(255,50,100,.6);"></div></div>
+    <div class="err-msg" id="err-msg">Trying to recover memories…</div>
+  </div>
+
+  <!-- Phase 3: Rescue -->
+  <div class="cphase" id="cp3">
+    <div class="rescue-hearts">🩷 🩷 🩷</div>
+    <div class="rescue-text" id="rescue-text"></div>
+  </div>
+
+  <!-- Phase 4: Final -->
+  <div class="cphase" id="cp4">
+    <div class="final-msg">
+      I didn't need time to calculate this…<br>
+      I already know.<br><br>
+      You are everything to me.<br><br>
+      No error.<br>
+      No distance.<br>
+      No moment could ever erase what I feel for you.<br><br>
+      Even if everything else disappears…<br><br>
+      I will still choose you.<br>
+      Again and again.<br><br>
+      And I will stand by your side,<br>
+      support you,<br>
+      until you achieve every dream you have.<br><br>
+      <em>Always.</em>
+    </div>
+    <div class="final-tagline">Happy Easter &amp; Happy Anniversary, my love 🩷</div>
+    <div class="final-hearts">🩷 🩷 🩷 🩷 🩷</div>
+    <button class="cin-close" onclick="closeCinematic()">✕ &nbsp; Close</button>
+  </div>
+
+</div>
+
+<!-- ══════════════ SCRIPT ══════════════ -->
+<script>
+/* ─────────────────────────────────────
+   YOUTUBE PLAYERS
+───────────────────────────────────── */
+const YT_IDS = {
+  p1: 'uQFVqltOXRg', // Get You
+  p2: 'vBy7FaapGRo', // Best Part
+  p3: 'sNY_2TEmzho', // Luther
+};
+const YT = {};
+let ytReady = 0;
+let currentYT = null;
+let musicUnlocked = false;
+
+window.onYouTubeIframeAPIReady = () => {
+  ['p1','p2','p3'].forEach(id => {
+    YT[id] = new window.YT.Player(id, {
+      height:'1', width:'1',
+      videoId: YT_IDS[id],
+      playerVars:{
+        autoplay:1, mute:1, controls:0, disablekb:1,
+        fs:0, iv_load_policy:3, modestbranding:1, playsinline:1,
+        rel:0, loop:1, playlist: YT_IDS[id],
+      },
+      events:{
+        onReady: e => {
+          e.target.setVolume(0);
+          try { e.target.playVideo(); } catch(_){}
+          ytReady++;
+        }
+      }
+    });
+  });
+};
+
+function fadeVol(player, from, to, ms, cb){
+  if(!player || typeof player.setVolume !== 'function'){ cb&&cb(); return; }
+  const steps = 36, iv = ms/steps, delta = (to-from)/steps;
+  let s = 0;
+  const t = setInterval(()=>{
+    s++;
+    const v = Math.min(100, Math.max(0, from + delta*s));
+    try { player.setVolume(v); } catch(_){}
+    if(s >= steps){
+      clearInterval(t);
+      if(to === 0) try { player.pauseVideo(); } catch(_){}
+      cb&&cb();
+    }
+  }, iv);
+}
+
+function switchTrack(id, vol, fadeDur){
+  fadeDur = fadeDur || 1800;
+  if(currentYT && currentYT !== YT[id]){
+    const prev = currentYT;
+    const prevVol = (() => { try { return prev.getVolume(); } catch(_){ return 20; } })();
+    fadeVol(prev, prevVol, 0, fadeDur);
+  }
+  currentYT = YT[id];
+  try { currentYT.unMute(); currentYT.playVideo(); } catch(_){}
+  const curVol = (() => { try { return currentYT.getVolume(); } catch(_){ return 0; } })();
+  fadeVol(currentYT, curVol, vol, fadeDur);
+}
+
+/* ─────────────────────────────────────
+   FLOATING HEARTS
+───────────────────────────────────── */
+function spawnHearts(container, n){
+  for(let i=0;i<n;i++){
+    const h = document.createElement('span');
+    h.className = 'fh';
+    h.textContent = Math.random() > .4 ? '🩷' : '🌸';
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.fontSize = (.7 + Math.random()*1.1) + 'rem';
+    h.style.animationDuration = (7 + Math.random()*9) + 's';
+    h.style.animationDelay = (Math.random()*10) + 's';
+    container.appendChild(h);
+  }
+}
+spawnHearts(document.getElementById('hearts-bg'), 28);
+
+/* ─────────────────────────────────────
+   DUST PARTICLES
+───────────────────────────────────── */
+(function(){
+  const land = document.getElementById('landing');
+  for(let i=0;i<18;i++){
+    const d = document.createElement('div');
+    d.className = 'dust';
+    d.style.left = Math.random()*100 + '%';
+    d.style.bottom = Math.random()*30 + '%';
+    d.style.width = d.style.height = (.5 + Math.random()*2.5) + 'px';
+    d.style.animationDuration = (8 + Math.random()*14) + 's';
+    d.style.animationDelay = (Math.random()*12) + 's';
+    land.appendChild(d);
+  }
+})();
+
+/* ─────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────── */
+const revEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); }});
+}, {threshold: .13});
+revEls.forEach(el => revObs.observe(el));
+
+/* ─────────────────────────────────────
+   HEARTBEAT WIDGET
+───────────────────────────────────── */
+const hbWidget = document.getElementById('hb-widget');
+function setHBPhase(phase){
+  hbWidget.className = '';
+  hbWidget.classList.add('visible', 'hb-' + phase);
+}
+
+/* ─────────────────────────────────────
+   TYPING ANIMATION
+───────────────────────────────────── */
+const MSG = "I may not know all your dreams yet, but I promise this — I will support you in every step you take. Every decision you make, I will stand beside you. Until the day I die, I will be with you, supporting you until you achieve everything your heart desires.";
+let typingDone = false;
+
+function startTyping(){
+  if(typingDone) return; typingDone = true;
+  const el = document.getElementById('typing-text');
+  el.innerHTML = '<span class="cursor"></span>';
+  let i = 0;
+  const iv = setInterval(()=>{
+    if(i < MSG.length){
+      el.innerHTML = MSG.slice(0,++i) + '<span class="cursor"></span>';
+    } else {
+      clearInterval(iv);
+      setTimeout(()=>{ const c=document.querySelector('.cursor'); if(c) c.style.display='none'; },2000);
+      // Switch to Best Part when love message done
+      if(musicUnlocked) switchTrack('p2', 22, 2200);
+      setHBPhase('medium');
+    }
+  }, 47);
+}
+const msgObs = new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){ startTyping(); msgObs.disconnect(); }
+},{threshold:.3});
+msgObs.observe(document.getElementById('love-message'));
+
+/* ─────────────────────────────────────
+   WAX SEAL — ENVELOPE OPEN
+───────────────────────────────────── */
+let sealClicked = false;
+
+function crackSeal(e){
+  if(sealClicked) return;
+  // Only trigger on envelope click, not the start button
+  if(e.target.id === 'start-btn' || e.target.closest('#start-btn')) return;
+  sealClicked = true;
+
+  const wrap = document.getElementById('envelope-wrap');
+  const seal = document.getElementById('wax-seal');
+  const flap = document.getElementById('env-flap');
+  const letter = document.getElementById('letter');
+  const hint = document.getElementById('seal-hint');
+
+  if(hint) hint.style.display = 'none';
+
+  // Crack particles
+  for(let i=0;i<20;i++){
+    const p = document.createElement('div');
+    p.className = 'crack-particle';
+    const angle = (i/20)*Math.PI*2;
+    const dist = 30 + Math.random()*50;
+    p.style.setProperty('--tx', (Math.cos(angle)*dist) + 'px');
+    p.style.setProperty('--ty', (Math.sin(angle)*dist - 20) + 'px');
+    p.style.setProperty('--dur', (.5 + Math.random()*.6) + 's');
+    p.style.width = p.style.height = (3 + Math.random()*5) + 'px';
+    p.style.background = `hsl(${340 + Math.random()*20},80%,65%)`;
+    seal.appendChild(p);
+  }
+
+  // Seal fade out
+  setTimeout(()=>{ seal.style.transition = 'opacity .5s ease, transform .5s ease'; seal.style.opacity = '0'; seal.style.transform = 'translate(-50%,-50%) scale(.4)'; }, 200);
+
+  // Flap opens
+  wrap.classList.add('cracking');
+  setTimeout(()=>{ flap.classList.add('open'); }, 500);
+
+  // Letter rises
+  setTimeout(()=>{ letter.classList.add('revealed'); }, 1100);
+}
+
+/* ─────────────────────────────────────
+   START EXPERIENCE
+───────────────────────────────────── */
+function startExperience(e){
+  e.stopPropagation();
+  const btn = document.getElementById('start-btn');
+  btn.disabled = true;
+  btn.textContent = '✦ Beginning… ✦';
+  musicUnlocked = true;
+
+  // Unlock audio — call playVideo on all, start Get You
+  ['p1','p2','p3'].forEach(id => {
+    try { YT[id].unMute(); YT[id].setVolume(0); YT[id].playVideo(); } catch(_){}
+  });
+  switchTrack('p1', 20, 1500);
+  setHBPhase('slow');
+  hbWidget.classList.add('visible');
+
+  setTimeout(()=>{
+    btn.textContent = '🩷 Enjoy the experience';
+    document.getElementById('love-message').scrollIntoView({behavior:'smooth'});
+  }, 600);
+}
+
+/* ─────────────────────────────────────
+   CINEMATIC SEQUENCE
+───────────────────────────────────── */
+let cinRunning = false;
+
+function startCinematic(){
+  if(cinRunning) return; cinRunning = true;
+  const ov = document.getElementById('cin-overlay');
+  ov.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setHBPhase('medium');
+  phase1();
+}
+
+/* ── Phase 1 ── */
+function phase1(){
+  const el = document.getElementById('cp1');
+  el.classList.add('active');
+  const bar = document.getElementById('lbar');
+  const pct = document.getElementById('lbar-pct');
+  const msg = document.getElementById('cp1-msg');
+  const msgs = ['Loading memories…','Replaying our moments…','Counting every smile…','Calculating how much you mean to me…','Almost ready…'];
+  let mi = 0, prog = 0;
+  const start = Date.now(), total = 7200;
+
+  const miv = setInterval(()=>{
+    mi = (mi+1) % msgs.length;
+    msg.style.opacity = '0';
+    setTimeout(()=>{ msg.textContent = msgs[mi]; msg.style.opacity = '1'; }, 380);
+  }, 1400);
+
+  const biv = setInterval(()=>{
+    prog = Math.min(100, Math.floor(((Date.now()-start)/total)*100));
+    bar.style.width = prog + '%';
+    pct.textContent = prog + '%';
+    if(prog >= 100){
+      clearInterval(biv); clearInterval(miv);
+      setTimeout(()=>{
+        el.classList.add('flickering');
+        // Fade from Get You → Best Part
+        if(musicUnlocked) switchTrack('p2', 22, 2000);
+        setTimeout(()=>{ el.classList.remove('active'); phase2(); },700);
+      },1100);
+    }
+  }, 45);
+}
+
+/* ── Phase 2 ── */
+function phase2(){
+  const el = document.getElementById('cp2');
+  el.classList.add('active');
+  const ebar = document.getElementById('ebar');
+  const emsg = document.getElementById('err-msg');
+  ebar.style.transition = 'width .7s ease';
+  ebar.style.width = '72%';
+  setHBPhase('glitch');
+  const msgs = ['Trying to recover memories…','System failure…','Connection lost…','Rebuilding feelings…'];
+  let mi = 0;
+  const iv = setInterval(()=>{
+    mi = (mi+1) % msgs.length;
+    emsg.style.opacity = '0';
+    setTimeout(()=>{ emsg.textContent = msgs[mi]; emsg.style.opacity='1'; },180);
+  }, 850);
+  setTimeout(()=>{ el.classList.add('flickering'); }, 900);
+  setTimeout(()=>{ el.classList.add('flickering'); }, 2200);
+  setTimeout(()=>{
+    clearInterval(iv);
+    if(musicUnlocked && currentYT){
+      const v = (() => { try { return currentYT.getVolume(); } catch(_){ return 22; }})();
+      fadeVol(currentYT, v, 0, 1200);
+    }
+    el.classList.add('flickering');
+    setTimeout(()=>{ el.classList.remove('active'); phase3(); },550);
+  }, 4200);
+}
+
+/* ── Phase 3 ── */
+function phase3(){
+  const el = document.getElementById('cp3');
+  el.classList.add('active');
+  const rt = document.getElementById('rescue-text');
+  rt.textContent = '';
+
+  setTimeout(()=>{ el.classList.add('flickering'); },200);
+  setTimeout(()=>{ el.classList.add('pink-bg'); },900);
+  setTimeout(()=>{ el.classList.add('lit'); },1100);
+
+  // Start Luther softly, build up
+  setTimeout(()=>{
+    if(musicUnlocked){ switchTrack('p3', 10, 2800); setTimeout(()=>{ fadeVol(YT['p3'],10,28,7000); },3000); }
+    setHBPhase('fast');
+  },1500);
+
+  // Type rescue text
+  const lines = ["Wait…\nThat's not right.", "\n\nI could never lose you."];
+  let full = '';
+  setTimeout(()=>{
+    let li = 0;
+    function nextLine(){
+      if(li >= lines.length){ setTimeout(()=>{ el.classList.remove('active'); phase4(); },2200); return; }
+      const line = lines[li++];
+      let ci = 0;
+      const iv = setInterval(()=>{
+        if(ci < line.length){ full += line[ci++]; rt.innerHTML = full.replace(/\n/g,'<br>'); }
+        else { clearInterval(iv); setTimeout(nextLine, li < lines.length ? 900 : 0); }
+      },85);
+    }
+    nextLine();
+  },1500);
+}
+
+/* ── Phase 4 ── */
+function phase4(){
+  const el = document.getElementById('cp4');
+  el.classList.add('active');
+  // Spawn hearts on overlay
+  const ov = document.getElementById('cin-overlay');
+  const hc = document.createElement('div');
+  hc.id = 'cin-hearts';
+  hc.style.cssText = 'position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;';
+  spawnHearts(hc, 22);
+  ov.appendChild(hc);
+  setTimeout(()=>{ el.classList.add('revealed'); },400);
+}
+
+function closeCinematic(){
+  const ov = document.getElementById('cin-overlay');
+  ov.style.opacity='0';
+  document.body.style.overflow='';
+  setTimeout(()=>{
+    ov.classList.remove('active');
+    ov.style.opacity='';
+    cinRunning = false;
+    const hc = document.getElementById('cin-hearts');
+    if(hc) hc.remove();
+    document.querySelectorAll('.cphase').forEach(p => {
+      p.classList.remove('active','flickering','pink-bg','lit','revealed');
+    });
+    if(musicUnlocked) switchTrack('p1',18,2000);
+    setHBPhase('slow');
+  },900);
+}
+</script>
+
+<script src="https://www.youtube.com/iframe_api" async></script>
+</body>
+</html>

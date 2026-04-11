@@ -1,0 +1,7 @@
+{
+  "startupCommands": [
+    "npx --yes serve -p 3000 -s ."
+  ],
+  "projectId": "d702fc50-3877-4e0b-a0f0-639c9a8b31a6",
+  "templateId": "any"
+}
