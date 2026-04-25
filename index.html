@@ -19,7 +19,83 @@
   --glass:rgba(255,255,255,0.18);--glass-b:rgba(255,255,255,0.35);
   --shadow:rgba(255,140,180,0.22);
   --text:#5a1a35;--text2:#8b3a5a;
+  
+  --bg-landing: linear-gradient(160deg,#fff0f5 0%,#fde8f0 30%,#fddbe8 55%,#fce8d5 100%);
+  --bg-msg: linear-gradient(180deg,#fff0f5 0%,#ffeaf3 55%,#fff5f0 100%);
+  --bg-songs: linear-gradient(180deg,#fff5f0 0%,#ffe8f0 65%,#fff0f5 100%);
+  --bg-mem: linear-gradient(180deg,#fff0f5 0%,#ffeef8 55%,#fff5ee 100%);
+  --bg-promise: linear-gradient(180deg,#fff5ee 0%,#ffeaf3 65%,#fff0f5 100%);
+  --bg-surp: linear-gradient(180deg,#fff0f5 0%,#ffe4f0 100%);
+  --bg-foot: linear-gradient(0deg,#ffe4f0,#fff0f5);
+  
+  --card-bg: linear-gradient(140deg,rgba(255,255,255,0.55),rgba(255,210,230,0.3));
+  --card-shadow: 0 8px 28px rgba(255,120,160,0.1);
+  --card-shadow-hover: 0 22px 60px rgba(255,120,160,0.26),0 0 40px rgba(255,170,200,0.18);
+  --btn-bg: linear-gradient(135deg,rgba(255,255,255,0.7),rgba(255,200,220,0.5));
+  --env-back: linear-gradient(145deg,#fde8f0 0%,#fbdce8 60%,#f8d0de 100%);
+  --env-flap: #f5cedd;
+  --letter-bg: linear-gradient(165deg,#fffcf9 0%,#fff5f7 50%,#fff9f5 100%);
+  --divider: rgba(255,140,180,0.35);
+  --glass-border: rgba(255,180,200,0.5);
+  --card-border-hover: rgba(255,140,180,0.5);
 }
+
+body.dark-theme {
+  --p1:#120509;--p2:#2e1220;--p3:#521832;--p4:#911f4d;--p5:#d42b6b;
+  --g1:#1a1608;--g3:#a3822d;--g4:#f2c75a;
+  --glass:rgba(20,5,12,0.6);--glass-b:rgba(255,100,150,0.2);
+  --shadow:rgba(0,0,0,0.6);
+  --text:#ffb8d1;--text2:#e09ab3;
+  
+  --bg-landing: linear-gradient(160deg,#120509 0%,#1f0a14 30%,#2b0d1b 55%,#1c0a0c 100%);
+  --bg-msg: linear-gradient(180deg,#120509 0%,#1c0912 55%,#170707 100%);
+  --bg-songs: linear-gradient(180deg,#170707 0%,#1c0912 65%,#120509 100%);
+  --bg-mem: linear-gradient(180deg,#120509 0%,#1c0912 55%,#170707 100%);
+  --bg-promise: linear-gradient(180deg,#170707 0%,#1c0912 65%,#120509 100%);
+  --bg-surp: linear-gradient(180deg,#120509 0%,#1f0813 100%);
+  --bg-foot: linear-gradient(0deg,#1f0813,#120509);
+  
+  --card-bg: linear-gradient(140deg,rgba(40,15,25,0.7),rgba(60,20,35,0.4));
+  --card-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  --card-shadow-hover: 0 22px 60px rgba(255,50,100,0.15),0 0 40px rgba(255,80,120,0.1);
+  --btn-bg: linear-gradient(135deg,rgba(60,20,35,0.8),rgba(90,25,45,0.6));
+  --env-back: linear-gradient(145deg,#2b0d1b 0%,#3d1326 60%,#4a182e 100%);
+  --env-flap: #3a1122;
+  --letter-bg: linear-gradient(165deg,#1f0a14 0%,#2e0f1e 50%,#260d18 100%);
+  --divider: rgba(255,100,150,0.3);
+  --glass-border: rgba(255,100,150,0.3);
+  --card-border-hover: rgba(255,80,120,0.5);
+}
+
+/* Global Transitions */
+body, section, footer, div, h1, h2, h3, p, span, button, a {
+  transition: background-color 0.6s ease, background 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* Theme Toggle Button */
+.theme-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  background: var(--glass);
+  border: 1px solid var(--glass-b);
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px var(--shadow);
+  color: var(--text);
+}
+.theme-btn:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
 html{scroll-behavior:smooth;}
 body{
   font-family:'Inter',sans-serif;
@@ -118,7 +194,7 @@ body{
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   overflow:hidden;
-  background:linear-gradient(160deg,#fff0f5 0%,#fde8f0 30%,#fddbe8 55%,#fce8d5 100%);
+  background:var(--bg-landing);
 }
 #landing::before{
   content:'';position:absolute;inset:0;
@@ -183,7 +259,7 @@ body{
 /* Back of envelope */
 .env-back{
   position:absolute;inset:0;
-  background:linear-gradient(145deg,#fde8f0 0%,#fbdce8 60%,#f8d0de 100%);
+  background:var(--env-back);
   border-radius:8px 8px 10px 10px;
   box-shadow:0 20px 60px rgba(200,80,120,0.18),0 8px 24px rgba(200,80,120,0.12),inset 0 1px 0 rgba(255,255,255,0.5);
   overflow:hidden;
@@ -222,7 +298,7 @@ body{
   height:0;
   border-left:calc(min(360px,86vw)/2) solid transparent;
   border-right:calc(min(360px,86vw)/2) solid transparent;
-  border-top:calc(min(250px,60vw)*0.44) solid #f5cedd;
+  border-top:calc(min(250px,60vw)*0.44) solid var(--env-flap);
   z-index:5;
   transform-origin:top center;
   transform-style:preserve-3d;
@@ -353,7 +429,7 @@ body{
   transform:translateX(-50%) scaleY(0);
   transform-origin:bottom center;
   width:90%;
-  background:linear-gradient(165deg,#fffcf9 0%,#fff5f7 50%,#fff9f5 100%);
+  background:var(--letter-bg);
   border-radius:6px;
   padding:clamp(1.2rem,4vw,2rem) clamp(1rem,3vw,1.8rem);
   box-shadow:0 -8px 32px rgba(200,80,120,0.15),0 4px 20px rgba(200,80,120,0.1);
@@ -400,8 +476,8 @@ body{
 #start-btn{
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.75rem 1.8rem;
-  background:linear-gradient(135deg,rgba(255,255,255,0.7),rgba(255,200,220,0.5));
-  border:1.5px solid rgba(255,180,200,0.5);
+  background:var(--btn-bg);
+  border:1.5px solid var(--glass-border);
   border-radius:50px;
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(0.95rem,3vw,1.15rem);
@@ -499,12 +575,12 @@ body{
 .rd1{transition-delay:.15s}.rd2{transition-delay:.3s}.rd3{transition-delay:.45s}
 
 /* Petal divider */
-.divider{text-align:center;padding:.8rem 0;font-size:1.1rem;color:rgba(255,140,180,0.35);letter-spacing:1.5rem;}
+.divider{text-align:center;padding:.8rem 0;font-size:1.1rem;color:var(--divider);letter-spacing:1.5rem;}
 
 /* ═══════════════════════════════════════════
    LOVE MESSAGE
 ═══════════════════════════════════════════ */
-#love-message{background:linear-gradient(180deg,#fff0f5 0%,#ffeaf3 55%,#fff5f0 100%);}
+#love-message{background:var(--bg-msg);}
 
 .message-glass{
   background:var(--glass);
@@ -541,16 +617,16 @@ body{
 /* ═══════════════════════════════════════════
    SONGS
 ═══════════════════════════════════════════ */
-#songs{background:linear-gradient(180deg,#fff5f0 0%,#ffe8f0 65%,#fff0f5 100%);}
+#songs{background:var(--bg-songs);}
 .songs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem;margin-top:.5rem;}
 
 .song-card{
-  background:linear-gradient(140deg,rgba(255,255,255,0.55),rgba(255,210,230,0.3));
+  background:var(--card-bg);
   border:1.5px solid var(--glass-b);
   border-radius:20px;
   padding:1.8rem 1.6rem;
   backdrop-filter:blur(16px);
-  box-shadow:0 8px 28px rgba(255,120,160,0.1);
+  box-shadow:var(--card-shadow);
   cursor:pointer;
   transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
   position:relative;overflow:hidden;
@@ -562,8 +638,8 @@ body{
 }
 .song-card:hover{
   transform:translateY(-7px) scale(1.026);
-  box-shadow:0 22px 60px rgba(255,120,160,0.26),0 0 40px rgba(255,170,200,0.18);
-  border-color:rgba(255,140,180,0.5);
+  box-shadow:var(--card-shadow-hover);
+  border-color:var(--card-border-hover);
 }
 .song-card:hover::after{opacity:1;}
 .song-note{font-size:2rem;margin-bottom:.9rem;animation:pulse 3s ease-in-out infinite;}
@@ -578,21 +654,21 @@ body{
 /* ═══════════════════════════════════════════
    MEMORIES
 ═══════════════════════════════════════════ */
-#memories{background:linear-gradient(180deg,#fff0f5 0%,#ffeef8 55%,#fff5ee 100%);}
+#memories{background:var(--bg-mem);}
 .memories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.1rem;margin-top:.5rem;}
 .memory-card{
-  background:linear-gradient(140deg,rgba(255,255,255,0.5),rgba(255,210,230,0.22));
+  background:var(--card-bg);
   border:1.5px solid var(--glass-b);
   border-radius:18px;
   aspect-ratio:1;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:.7rem;
   backdrop-filter:blur(14px);
-  box-shadow:0 6px 22px rgba(255,120,160,0.09);
+  box-shadow:var(--card-shadow);
   transition:transform .35s ease,box-shadow .35s ease;
   text-align:center;padding:1.4rem;
 }
-.memory-card:hover{transform:translateY(-5px) rotate(1deg);box-shadow:0 14px 40px rgba(255,120,160,0.2);}
+.memory-card:hover{transform:translateY(-5px) rotate(1deg);box-shadow:var(--card-shadow-hover);}
 .memory-icon{font-size:2rem;}
 .memory-label{font-family:'Dancing Script',cursive;font-size:.95rem;color:var(--text2);}
 .memory-soon{font-family:'Inter',sans-serif;font-size:.68rem;color:rgba(140,60,90,0.45);letter-spacing:.06em;}
@@ -600,7 +676,7 @@ body{
 /* ═══════════════════════════════════════════
    PROMISE
 ═══════════════════════════════════════════ */
-#promise{background:linear-gradient(180deg,#fff5ee 0%,#ffeaf3 65%,#fff0f5 100%);text-align:center;}
+#promise{background:var(--bg-promise);text-align:center;}
 .promise-text{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(1.5rem,5vw,2.7rem);
@@ -630,7 +706,7 @@ body{
    SURPRISE BUTTON
 ═══════════════════════════════════════════ */
 #surprise-section{
-  background:linear-gradient(180deg,#fff0f5 0%,#ffe4f0 100%);
+  background:var(--bg-surp);
   text-align:center;
   padding:clamp(3rem,8vw,6rem) 1.5rem;
 }
@@ -800,15 +876,14 @@ body{
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer{background:linear-gradient(0deg,#ffe4f0,#fff0f5);text-align:center;padding:2.2rem 1.5rem;}
+footer{background:var(--bg-foot);text-align:center;padding:2.2rem 1.5rem;}
 footer p{font-family:'Dancing Script',cursive;font-size:1rem;color:rgba(100,30,60,.45);}
   </style>
 </head>
 <body>
 
 <!-- ════════ HIDDEN YOUTUBE PLAYERS ════════ -->
-<div id="yt-wrap">
-  <div id="p1"></div>
+<button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙</button>
   <div id="p2"></div>
   <div id="p3"></div>
 </div>
@@ -1032,48 +1107,33 @@ footer p{font-family:'Dancing Script',cursive;font-size:1rem;color:rgba(100,30,6
 /* ─────────────────────────────────────
    YOUTUBE PLAYERS
 ───────────────────────────────────── */
-const YT_IDS = {
-  p1: 'uQFVqltOXRg', // Get You
-  p2: 'vBy7FaapGRo', // Best Part
-  p3: 'sNY_2TEmzho', // Luther
+const AUDIO_FILES = {
+  p1: 'getyou.mp3', // Get You
+  p2: 'bestpart.mp3', // Best Part
+  p3: 'luther.mp3', // Luther
 };
-const YT = {};
-let ytReady = 0;
-let currentYT = null;
+const PLAYERS = {};
+let currentAudio = null;
 let musicUnlocked = false;
 
-window.onYouTubeIframeAPIReady = () => {
-  ['p1','p2','p3'].forEach(id => {
-    YT[id] = new window.YT.Player(id, {
-      height:'1', width:'1',
-      videoId: YT_IDS[id],
-      playerVars:{
-        autoplay:1, mute:1, controls:0, disablekb:1,
-        fs:0, iv_load_policy:3, modestbranding:1, playsinline:1,
-        rel:0, loop:1, playlist: YT_IDS[id],
-      },
-      events:{
-        onReady: e => {
-          e.target.setVolume(0);
-          try { e.target.playVideo(); } catch(_){}
-          ytReady++;
-        }
-      }
-    });
-  });
-};
+Object.keys(AUDIO_FILES).forEach(id => {
+  const audio = new Audio(AUDIO_FILES[id]);
+  audio.loop = true;
+  audio.volume = 0;
+  PLAYERS[id] = audio;
+});
 
 function fadeVol(player, from, to, ms, cb){
-  if(!player || typeof player.setVolume !== 'function'){ cb&&cb(); return; }
+  if(!player) { cb&&cb(); return; }
   const steps = 36, iv = ms/steps, delta = (to-from)/steps;
   let s = 0;
   const t = setInterval(()=>{
     s++;
     const v = Math.min(100, Math.max(0, from + delta*s));
-    try { player.setVolume(v); } catch(_){}
+    try { player.volume = v / 100; } catch(_){}
     if(s >= steps){
       clearInterval(t);
-      if(to === 0) try { player.pauseVideo(); } catch(_){}
+      if(to === 0) try { player.pause(); } catch(_){}
       cb&&cb();
     }
   }, iv);
@@ -1081,15 +1141,20 @@ function fadeVol(player, from, to, ms, cb){
 
 function switchTrack(id, vol, fadeDur){
   fadeDur = fadeDur || 1800;
-  if(currentYT && currentYT !== YT[id]){
-    const prev = currentYT;
-    const prevVol = (() => { try { return prev.getVolume(); } catch(_){ return 20; } })();
+  if(currentAudio && currentAudio !== PLAYERS[id]){
+    const prev = currentAudio;
+    const prevVol = prev.volume * 100;
     fadeVol(prev, prevVol, 0, fadeDur);
   }
-  currentYT = YT[id];
-  try { currentYT.unMute(); currentYT.playVideo(); } catch(_){}
-  const curVol = (() => { try { return currentYT.getVolume(); } catch(_){ return 0; } })();
-  fadeVol(currentYT, curVol, vol, fadeDur);
+  currentAudio = PLAYERS[id];
+  try { currentAudio.play(); } catch(_){}
+  const curVol = currentAudio.volume * 100;
+  fadeVol(currentAudio, curVol, vol, fadeDur);
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark-theme');
+  document.getElementById('theme-toggle').textContent = isDark ? '☀️' : '🌙';
 }
 
 /* ─────────────────────────────────────
@@ -1228,7 +1293,7 @@ function startExperience(e){
 
   // Unlock audio — call playVideo on all, start Get You
   ['p1','p2','p3'].forEach(id => {
-    try { YT[id].unMute(); YT[id].setVolume(0); YT[id].playVideo(); } catch(_){}
+    try { PLAYERS[id].volume = 0; PLAYERS[id].play().then(() => PLAYERS[id].pause()).catch(()=>{}); } catch(_){}
   });
   switchTrack('p1', 20, 1500);
   setHBPhase('slow');
@@ -1307,9 +1372,9 @@ function phase2(){
   setTimeout(()=>{ el.classList.add('flickering'); }, 2200);
   setTimeout(()=>{
     clearInterval(iv);
-    if(musicUnlocked && currentYT){
-      const v = (() => { try { return currentYT.getVolume(); } catch(_){ return 22; }})();
-      fadeVol(currentYT, v, 0, 1200);
+    if(musicUnlocked && currentAudio){
+      const v = currentAudio.volume * 100;
+      fadeVol(currentAudio, v, 0, 1200);
     }
     el.classList.add('flickering');
     setTimeout(()=>{ el.classList.remove('active'); phase3(); },550);
@@ -1329,7 +1394,7 @@ function phase3(){
 
   // Start Luther softly, build up
   setTimeout(()=>{
-    if(musicUnlocked){ switchTrack('p3', 10, 2800); setTimeout(()=>{ fadeVol(YT['p3'],10,28,7000); },3000); }
+    if(musicUnlocked){ switchTrack('p3', 10, 2800); setTimeout(()=>{ fadeVol(PLAYERS['p3'],10,28,7000); },3000); }
     setHBPhase('fast');
   },1500);
 
@@ -1384,6 +1449,6 @@ function closeCinematic(){
 }
 </script>
 
-<script src="https://www.youtube.com/iframe_api" async></script>
+
 </body>
 </html>
